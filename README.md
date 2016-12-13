@@ -5,25 +5,26 @@ IBM Watsonのサービスの一つであるVisual Recognition APIを呼びだす
 Node-REDを使って簡単に呼び出しているのが特徴です。IBM Bluemixを使えば簡単に、迅速にアプリケーションを作ることが可能です。
 
 ## ノード解説 - visual recognition node
-IBMがBluemixは様々なコグニティブAPIを提供しています。その中でも画像認識サービスである、Visual Recognition は画像解析から年齢や人物判定まで行う機能を持ったサービスです。IBM Watsonのカテゴリに入っているので確認してみてください。
+IBMがBluemixは様々なコグニティブAPIを提供しています。その中でも画像認識サービスである、Visual Recognition ![image_alt_text](images/visualrecognition_node.png) は画像解析から年齢や人物判定まで行う機能を持ったサービスです。IBM Watsonのカテゴリに入っているので確認してみてください。
 
 ## 全体フロー概要
 画像のURL（例："http://xxxxx.jpg" ）をVisual Recognition のAPIにかけると画像解析を行い、顔認識の結果を返してくれるサンプルアプリです。
+![image_alt_text](images/node_overall.png)
 ***
 ## 1. BluemixでNode-REDサービスを設定する
-Bluemix Hands-On #1 の資料を参照してください。
+[Bluemix Hands-On #1](https://github.com/kifumi/visualrecognition_nodered/blob/master/20161210_2.pdf "Bluemix Hands-On #1")の資料を参照してください。
 
 ## 2. Visual Recognition APIを追加する
 Node-REDのノードに画像認識のための Visual Recognition があるのですが、このままでは使えません。 このNode-REDのアプリケーションにVisual Recognition APIを追加してあげる必要があります。
 Bluemixのメニュー画面左上の「IBM Bluemix」をクリックし、「すべてのアプリ」一覧のなかから、先ほどのNode-REDのアプリケーションをクリックしてください。 
-
+![image_alt_text](images/bluemix_apl.png) 
 左側の「接続」をクリックし、右側の「新規に接続」のアイコンをクリックします。
-
+![image_alt_text](images/bluemix_api.png) 
 左側の「Watson」をクリックし、「Visual Recognition」を選択します。
+![image_alt_text](images/bluemix_api2.png) 
 「作成」をクリックします。
-
+![image_alt_text](images/visualrecognition_api.png) 
 「アプリケーションの再ステージ」のポップアップ画面が現れるので「再ステージ」をクリックします。
-
 再ステージングし正常に再起動すればOKです！
 
 ## 3. Node-REDでプログラミング
