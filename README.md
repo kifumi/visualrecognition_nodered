@@ -1,6 +1,8 @@
 # visualrecognition_nodered
 Node-REDでVisual Recognition APIを使って顔を認識するアプリ
 
+3-3. template node (初期画面)
+
     <h1>Welcome to a Watson Visual Recognition sample Face Detection app</h1>
     <H2>Recognize anyone?</H2>
     <form  action="{{req._parsedUrl.pathname}}">
@@ -12,3 +14,23 @@ Node-REDでVisual Recognition APIを使って顔を認識するアプリ
     <br>Image URL: <input type="text" name="imageurl"/>   
     <input type="submit" value="Analyze"/>
     </form>
+    
+3-6. template node (結果)
+
+        <h1>Visual Recognition v3 Image Analysis</h1>    
+        <p>Analyzed image: {{result.images.0.resolved_url}}<br/><img id="image” 
+        src="{{result.images.0.resolved_url}}" height="200"/></p>    
+        {{^result}}        
+        <P>No Face detected</P>    
+        {{/result}}    
+        <p>Images Processed: {{result.images_processed}}</p>    
+        <table border='1'>        
+        <thead><tr><th>Age Range</th><th>Confidence</th><th>Gender</th><th>Confidence</th><th>Name</th></tr></thead>        
+        {{#result.images.0.faces}}<tr>            
+        <td><b>{{age.min}} - {{age.max}}</b></td><td><i>{{age.score}}</i></td>            <td>{{gender.gender}}</td>
+        <td>{{gender.score}}</td>            <td>{{identity.name}} ({{identity.score}})</td>       
+        </tr>{{/result.images.0.faces}}    
+        </table>    
+        <form  action="{{req._parsedUrl.pathname}}">        
+        <br><input type="submit" value="Try again or go back to the home page"/>    
+        </form>
