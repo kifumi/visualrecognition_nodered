@@ -12,11 +12,11 @@ IBMがBluemixは様々なコグニティブAPIを提供しています。その�
 ![image_alt_text](images/node_overall.png)
 ***
 ## 1. BluemixでNode-REDサービスを設定する
-[Bluemix Hands-On #1](https://github.com/kifumi/visualrecognition_nodered/blob/master/20161210_2.pdf "Bluemix Hands-On #1")の資料を参照してください。
+[Bluemix Hands-On #1](https://github.com/kifumi/visualrecognition_nodered/blob/master/20161210_1.pdf "Bluemix Hands-On #1")の資料を参照してください。
 
 ## 2. Visual Recognition APIを追加する
 Node-REDのノードに画像認識のための Visual Recognition があるのですが、このままでは使えません。 このNode-REDのアプリケーションにVisual Recognition APIを追加してあげる必要があります。
-Bluemixのメニュー画面左上の「IBM Bluemix」をクリックし、「すべてのアプリ」一覧のなかから、先ほどのNode-REDのアプリケーションをクリックしてください。 
+Bluemixのメニュー画面左上の「IBM Bluemix」をクリックし、「すべてのアプリ」一覧のなかから、1.で作ったNode-REDのアプリケーションをクリックしてください。 
 ![image_alt_text](images/bluemix_apl.png) 
 左側の「接続」をクリックし、右側の「新規に接続」のアイコンをクリックします。
 ![image_alt_text](images/bluemix_api.png) 
@@ -35,8 +35,7 @@ Node-REDエディターが立ち上がったら、上側右寄りの「＋」を
 ## 3-1. HTTP Input node
 Visual Recognition API は REST の GET メソッドでアクセスして画像を解析します。
 左側のパレットの Input カテゴリ内の http のノード ![image_alt_text](images/http_node.png)をドラッグ&ドロップし、キャンバス内に配置します。 
-プロパティー内のURL欄にアクセスポイントを記載します。ここでは/callwatson にしておきます。![image_alt_text](images/edit_http_node.png)
-Name の欄はノードの名前をわかりやすいようにしておくために記述しておきます。任意ですが、ここでは HTTP Input にしておきます。
+プロパティー内のURL欄にアクセスポイントを記載します。ここでは/callwatson にしておきます。Name の欄はノードの名前をわかりやすいようにしておくために記述しておきます。任意ですが、ここでは HTTP Input にしておきます。![image_alt_text](images/edit_http_node.png)
 
 ## 3-2. switch node
 画像のURLをチェックするノードを準備します。 
