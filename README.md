@@ -29,13 +29,24 @@ Bluemixのメニュー画面左上の「IBM Bluemix」をクリックし、「�
 
 ## 3. Node-REDでプログラミング
 「アプリの表示」をクリックし、「Go to your Node-RED flow editor」をクリックして、Node-REDがを起動します。
-
+![image_alt_text](images/show_your_apl.png)
 Node-REDエディターが立ち上がったら、上側右寄りの「＋」をクリックして、新しいフロー画面「Flow 2」を立ち上げます。
 
 ## 3-1. HTTP Input node
+Visual Recognition API は REST の GET メソッドでアクセスして画像を解析します。
+左側のパレットの Input カテゴリ内の http のノード ![image_alt_text](images/http_node.png)をドラッグ&ドロップし、キャンバス内に配置します。 
+プロパティー内のURL欄にアクセスポイントを記載します。ここでは/callwatson にしておきます。![image_alt_text](images/edit_http_node.png)
+Name の欄はノードの名前をわかりやすいようにしておくために記述しておきます。任意ですが、ここでは HTTP Input にしておきます。
 
+## 3-2. switch node
+画像のURLをチェックするノードを準備します。 
+左側のリソースパレットの function カテゴリ内のswitch ノード![image_alt_text](images/switch_node.png)をフローエディタ中央のキャンバスにドラッグ&ドロップします。
+プロパティー内の左下にある「+add」をクリックして、分岐ロジックを2つ用意します。Propertyは、右図の通りに imagurl属性に含まれるペイロードのnullチェックを行います。nullであれば、"1"にそれ以外であれば"2"に値が渡されます。![image_alt_text](images/edit_switch_node.png)
 
 ## 3-3. template node (初期画面)
+画面のHTMLを表示したり、Inputとなる画像を送信するためのメニューを提供するためにHTMLを記述します。 
+templateノード![image_alt_text](images/template_node.png)をフローエディタ中央のキャンバスにドラッグ&ドロップします。
+プロパティを以下のように記述します。
 
     <h1>Welcome to a Watson Visual Recognition sample Face Detection app</h1>
     <H2>Recognize anyone?</H2>
@@ -48,8 +59,23 @@ Node-REDエディターが立ち上がったら、上側右寄りの「＋」を
     <br>Image URL: <input type="text" name="imageurl"/>   
     <input type="submit" value="Analyze"/>
     </form>
-    
+  
+  ![image_alt_text](images/edit_template_node.png)
+
+## 3-4. change node
+入力画面から画像URLを抽出するchangeノード![image_alt_text](images/change_node.png)を定義します。
+左側のリソースパレットの function カテゴリ内のchangeノードをフロー・エディタ中央のキャンバスにドラッグ&ドロップします。 
+ここからpayload属性をimageurl属性に変換します。以下の通りにプロパティを設定します。 ![image_alt_text](images/edit_change_node.png)
+
+## 3-5. Image Analysis
+画像解析のための visual recognitionノード![image_alt_text](images/visualrecognition_node.png)を定義します。
+左側のリソースパレットの IBM_Watson カテゴリ内の visual recognitionノードをフロー・エディタ中央のキャンバスにドラッグ&ドロップします。 
+プロパティーでは顔認識を行うため、以下の通りにDetectをDetect Facesに設定します。![image_alt_text](images/edit_visualrecognition_node.png)
+
 ## 3-6. template node (結果)
+WatsonのImage Analysisから返ってきた結果を表示させるためのHTMLを記載します。
+temlplateノード![image_alt_text](images/template_node.png)をフローエディタ中央のキャンバスにドラッグ&ドロップします。
+プロパティを以下のように記述します。
 
         <h1>Visual Recognition v3 Image Analysis</h1>    
         <p>Analyzed image: {{result.images.0.resolved_url}}<br/><img id="image” 
@@ -68,3 +94,14 @@ Node-REDエディターが立ち上がったら、上側右寄りの「＋」を
         <form  action="{{req._parsedUrl.pathname}}">        
         <br><input type="submit" value="Try again or go back to the home page"/>    
         </form>
+
+![image_alt_text](images/edit_template_node2.png)
+
+## 3-7. フローをつなげる
+最後に http responseノード![image_alt_text](images/http_response_node.png)をフローエディタ中央のキャンバスにドラッグ&ドロップします。
+出来上がった各ノードをつなげて、右上のDeployをクリックすれば完成です!エラーが出ていないことを確認してください。 
+![image_alt_text](images/node_overall2.png)
+
+## 4. 動作確認
+ブラウザのURL欄に http://xxxx.mybluemix.net/callwatson をインプットして呼び出してみましょう。 
+Image URLの入力欄にWatsonに読ませたい画像URLを入れてみてください。
