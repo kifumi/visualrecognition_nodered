@@ -12,7 +12,9 @@ IBMがBluemixは様々なコグニティブAPIを提供しています。その�
 ![image_alt_text](images/node_overall.png)
 ***
 ## 1. BluemixでNode-REDサービスを設定する
-[Bluemix Hands-On #1](https://github.com/kifumi/visualrecognition_nodered/blob/master/20161210_1.pdf "Bluemix Hands-On #1")の資料を参照してください。
+大学の先生や学生さんは、IBM Academic Initiativeが使えます。まず、こちら[AI登録&Bluemixプロモコード取得・登録説明.pdf](https://www.ibm.com/developerworks/community/files/app?lang=ja#/file/9cb4246b-3fd6-4a92-80ae-2b86d9f2e622)を参照して設定してください。
+
+次に、[Bluemix Hands-On #1](https://github.com/kifumi/visualrecognition_nodered/blob/master/20161210_1.pdf "Bluemix Hands-On #1")の資料を参照してNode-REDサービスを設定します。
 
 ## 2. Visual Recognition APIを追加する
 Node-REDのノードに画像認識のための Visual Recognition があるのですが、このままでは使えません。 このNode-REDのアプリケーションにVisual Recognition APIを追加してあげる必要があります。
