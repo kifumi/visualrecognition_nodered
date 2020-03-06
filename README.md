@@ -1,4 +1,4 @@
-# Watson Visual Recognition APIを使った画像認識アプリの作成
+# Watson Visual Recognition APIを使った画像認識アプリの作成 test
 
 ## 概要
 IBM Watsonのサービスの一つであるVisual Recognition APIを呼びだす簡単なサンプルです。
